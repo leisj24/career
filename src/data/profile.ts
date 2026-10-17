@@ -95,7 +95,7 @@ export const profile = {
 	education: {
 		school: { zh: '中国科学技术大学', en: 'University of Science and Technology of China' },
 		major: {
-			zh: '人工智能与数据科学学院 · 数据科学与大数据专业',
+			zh: '人工智能与数据科学学院 · 数据科学与大数据技术专业',
 			en: 'School of AI and Data Science · Data Science and Big Data Technology',
 		},
 		period: { zh: '2024.09 – 2028.06（预计）', en: 'Sep 2024 – Jun 2028 (expected)' },
