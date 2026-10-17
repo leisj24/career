@@ -111,7 +111,7 @@ export const profile = {
 		},
 	},
 	honors: [
-		{ zh: '2025 华为 ICT 大赛挑战赛', en: 'Huawei ICT Competition 2025, Challenger Track', year: '2025' },
+		{ zh: '华为 ICT 大赛挑战赛', en: 'Huawei ICT Competition, Challenger Track', year: '2025' },
 		{ zh: '暑期“三下乡”社会实践 优秀团队 / 优秀个人', en: 'Outstanding Team & Individual, Summer Social Practice Program', year: '2025' },
 		{ zh: '中国科学技术大学科技活动周 志愿者', en: 'Volunteer, USTC Science and Technology Week', year: '2025' },
 		{ zh: '芳草社青年志愿者协会宣传部干事', en: 'Publicity Officer, Fangcao Youth Volunteers Association', year: '2024–2025' },
@@ -134,6 +134,7 @@ export const profile = {
 		github: { zh: 'GitHub', en: 'GitHub' } as L,
 		blog: { zh: '博客', en: 'Blog' } as L,
 		cv: { zh: 'CV（简历）', en: 'CV' } as L,
+		cvLink: { zh: '打印版', en: 'Print view' } as L,
 		switchTo: { zh: 'English', en: '中文' } as L,
 		research: { zh: '研究项目', en: 'Research' } as L,
 		publications: { zh: '论文与预印本', en: 'Publications & Preprints' } as L,
