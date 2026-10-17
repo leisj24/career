@@ -27,7 +27,7 @@
 | :-- | :-- |
 | Hero | 姓名（中英）、一句话定位、研究兴趣关键词、链接（Email / GitHub / 博客 / CV 下载） |
 | Research | 2–3 张项目卡：问题、方法、结果、状态标签（进行中 / 已完成 / 课程项目） |
-| Publications | 论文/预印本列表，支持 "in preparation" "under review" 状态；无正式发表时展示在研条目 |
+| Publications | 论文/预印本列表（含状态标记）。首版无正式发表，**留空**：保留区块并显示轻量占位文案（如 "Publications coming soon"），不虚构 in preparation 条目 |
 | Education | USTC 人工智能与数据科学学院，数据科学与大数据专业；GPA 3.55/4.3、排名 20/46、核心课程、CET-4/6 |
 | Honors | 竞赛与实践荣誉（华为 ICT 大赛、社会实践、志愿服务） |
 | Skills | 编程语言、工具、语言能力 |
@@ -103,7 +103,7 @@ public/
 - **Research 1：AV-ASD 数据集受试者统计与偏差分析**（2026 暑期科研，进行中）——数据集人工核查与人口学统计，目标是为模型评估提供可信的基准描述
 - **Research 2：大模型越狱与内容安全治理**（课程研究，已完成）——国内 LLM/智能体越狱案例、根因与治理对比
 - **Research 3：昇腾 NPU Pdist 算子优化**（华为 ICT 大赛，已完成）——在昇腾上实现并调优 pdist 算子
-- **Publications**：首版含 1–2 条 "in preparation / under review" 状态条目（基于上述项目），避免虚构发表
+- **Publications**：首版留空——保留区块与标题，渲染一行柔和占位文案（中英各一），不列 in preparation 条目，避免凑数感
 - **Honors**：2025 华为 ICT 大赛、暑期三下乡优秀团队/个人、科技活动周志愿者
 
 ## 8. 隐私与合规
