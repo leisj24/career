@@ -1,0 +1,56 @@
+:root {
+	--paper: #faf9f6;
+	--ink: #1f2328;
+	--muted: #5b616b;
+	--rule: #e5e2da;
+	--accent: #0f766e;
+	--accent-dark: #115e59;
+	--font-serif: 'Newsreader Variable', 'Noto Serif SC', 'Songti SC', SimSun, serif;
+	--font-sans: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--paper);
+	color: var(--ink);
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 16px;
+	line-height: 1.75;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+	text-underline-offset: 0.2em;
+}
+
+a:hover {
+	color: var(--accent);
+	text-decoration-color: var(--accent);
+}
+
+::selection {
+	background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.page {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 1.5rem 4rem;
+}
+
+.section-num {
+	font-family: var(--font-serif);
+	font-size: 0.85rem;
+	color: var(--accent);
+	letter-spacing: 0.08em;
+}
