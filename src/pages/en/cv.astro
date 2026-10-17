@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import { profile } from '../../data/profile';
+const p = profile;
+---
+<Base lang="en" title="CV · Shuangji Lei" description="CV of Shuangji Lei (print-friendly version of the bilingual homepage)." path="/cv/">
+	<main class="page cv">
+		<p class="back"><a href={`${import.meta.env.BASE_URL}en/`}>← Back to homepage</a></p>
+		<header>
+			<h1>{p.name.en} <span>{p.nameAlt.en}</span></h1>
+			<p class="meta">{p.title.en} · {p.emailUser}@{p.emailDomain} · github.com/leisj24</p>
+		</header>
+		<section>
+			<h2>Education</h2>
+			<p><strong>{p.education.school.en}</strong> · {p.education.major.en}<br />{p.education.period.en} · GPA {p.education.gpa} · Rank {p.education.rank.en}</p>
+			<p>Selected courses: {p.education.courses.en}; {p.education.english.en}</p>
+		</section>
+		<section>
+			<h2>Research</h2>
+			{p.research.map((r) => (
+				<article>
+					<h3>{r.title.en}<small>{r.period.en} · {r.status.en}</small></h3>
+					<p><b>Problem:</b> {r.problem.en}</p>
+					<p><b>Method:</b> {r.method.en}</p>
+					<p><b>Result:</b> {r.result.en}</p>
+				</article>
+			))}
+		</section>
+		<section>
+			<h2>Honors &amp; Service</h2>
+			<ul>{p.honors.map((h) => <li>{h.en} ({h.year})</li>)}</ul>
+		</section>
+		<section>
+			<h2>Skills</h2>
+			<ul>{p.skills.map((s) => <li>{s.category.en}: {s.items.join(', ')}</li>)}</ul>
+		</section>
+	</main>
+</Base>
+
+<style is:global>
+	.cv {
+		max-width: 800px;
+		padding-top: 2rem;
+	}
+	.cv .back {
+		font-size: 0.85rem;
+	}
+	.cv header {
+		border-bottom: 2px solid var(--ink);
+		padding-bottom: 1rem;
+		margin-bottom: 1.6rem;
+	}
+	.cv h1 {
+		margin: 0;
+		font-family: var(--font-serif);
+		font-size: 2rem;
+	}
+	.cv h1 span {
+		font-size: 1rem;
+		color: var(--muted);
+		font-weight: 400;
+		margin-left: 0.6rem;
+	}
+	.cv .meta {
+		margin: 0.4rem 0 0;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+	.cv section {
+		margin-bottom: 1.4rem;
+	}
+	.cv h2 {
+		font-family: var(--font-serif);
+		font-size: 1.15rem;
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 0.3rem;
+	}
+	.cv h3 {
+		font-size: 1rem;
+		margin: 0.9rem 0 0.2rem;
+	}
+	.cv h3 small {
+		color: var(--muted);
+		font-weight: 400;
+		margin-left: 0.6rem;
+		font-size: 0.8rem;
+	}
+	.cv p {
+		margin: 0.25rem 0;
+		font-size: 0.92rem;
+	}
+	.cv ul {
+		margin: 0.3rem 0;
+		padding-left: 1.2rem;
+		font-size: 0.92rem;
+	}
+	@media print {
+		.cv .back {
+			display: none;
+		}
+		body {
+			font-size: 12px;
+		}
+		.cv {
+			max-width: none;
+			padding: 0;
+		}
+	}
+</style>

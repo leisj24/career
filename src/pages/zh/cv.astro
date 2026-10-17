@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import { profile } from '../../data/profile';
+const p = profile;
+const lang = 'zh' as const;
+---
+<Base lang="zh" title="CV · 雷双吉" description="雷双吉的简历（中英双语主页的打印版）。" path="/cv/">
+	<main class="page cv">
+		<p class="back"><a href={`${import.meta.env.BASE_URL}zh/`}>← 返回主页</a></p>
+		<header>
+			<h1>{p.name.zh} <span>{p.nameAlt.zh}</span></h1>
+			<p class="meta">{p.title.zh} · {p.emailUser}@{p.emailDomain} · github.com/leisj24</p>
+		</header>
+		<section>
+			<h2>教育背景</h2>
+			<p><strong>{p.education.school.zh}</strong> · {p.education.major.zh}<br />{p.education.period.zh} · GPA {p.education.gpa} · 排名 {p.education.rank.zh}</p>
+			<p>核心课程：{p.education.courses.zh}；{p.education.english.zh}</p>
+		</section>
+		<section>
+			<h2>研究项目</h2>
+			{p.research.map((r) => (
+				<article>
+					<h3>{r.title.zh}<small>{r.period.zh} · {r.status.zh}</small></h3>
+					<p><b>问题：</b>{r.problem.zh}</p>
+					<p><b>方法：</b>{r.method.zh}</p>
+					<p><b>结果：</b>{r.result.zh}</p>
+				</article>
+			))}
+		</section>
+		<section>
+			<h2>荣誉与实践</h2>
+			<ul>{p.honors.map((h) => <li>{h.zh}（{h.year}）</li>)}</ul>
+		</section>
+		<section>
+			<h2>技能</h2>
+			<ul>{p.skills.map((s) => <li>{s.category.zh}：{s.items.join('、')}</li>)}</ul>
+		</section>
+	</main>
+</Base>
+
+<style is:global>
+	.cv {
+		max-width: 800px;
+		padding-top: 2rem;
+	}
+	.cv .back {
+		font-size: 0.85rem;
+	}
+	.cv header {
+		border-bottom: 2px solid var(--ink);
+		padding-bottom: 1rem;
+		margin-bottom: 1.6rem;
+	}
+	.cv h1 {
+		margin: 0;
+		font-family: var(--font-serif);
+		font-size: 2rem;
+	}
+	.cv h1 span {
+		font-size: 1rem;
+		color: var(--muted);
+		font-weight: 400;
+		margin-left: 0.6rem;
+	}
+	.cv .meta {
+		margin: 0.4rem 0 0;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+	.cv section {
+		margin-bottom: 1.4rem;
+	}
+	.cv h2 {
+		font-family: var(--font-serif);
+		font-size: 1.15rem;
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 0.3rem;
+	}
+	.cv h3 {
+		font-size: 1rem;
+		margin: 0.9rem 0 0.2rem;
+	}
+	.cv h3 small {
+		color: var(--muted);
+		font-weight: 400;
+		margin-left: 0.6rem;
+		font-size: 0.8rem;
+	}
+	.cv p {
+		margin: 0.25rem 0;
+		font-size: 0.92rem;
+	}
+	.cv ul {
+		margin: 0.3rem 0;
+		padding-left: 1.2rem;
+		font-size: 0.92rem;
+	}
+	@media print {
+		.cv .back {
+			display: none;
+		}
+		body {
+			font-size: 12px;
+		}
+		.cv {
+			max-width: none;
+			padding: 0;
+		}
+	}
+</style>
