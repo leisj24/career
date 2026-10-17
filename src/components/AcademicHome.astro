@@ -1,0 +1,283 @@
+---
+import type { Lang } from '../data/profile';
+import { profile } from '../data/profile';
+import ResearchCard from './ResearchCard.astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const other = lang === 'zh' ? 'en' : 'zh';
+const p = profile;
+const ui = p.ui;
+---
+<main class="page">
+	<nav class="topnav">
+		<a class="brand" href={base}>{p.nameAlt[lang]}</a>
+		<div class="nav-links">
+			<a href="#research">{ui.navResearch[lang]}</a>
+			<a href="#publications">{ui.navPublications[lang]}</a>
+			<a href="#education">{ui.navEducation[lang]}</a>
+			<a href="#honors">{ui.navHonors[lang]}</a>
+			<a href="#skills">{ui.navSkills[lang]}</a>
+			<a class="js-lang" data-lang={other} href={`${base}${other}/`}>{ui.switchTo[lang]}</a>
+		</div>
+	</nav>
+
+	<header class="hero">
+		<div class="hero-main">
+			<h1>{p.name[lang]}</h1>
+			<p class="name-alt">{p.nameAlt[lang]}</p>
+			<p class="title">{p.title[lang]}</p>
+			<p class="bio">{p.bio[lang]}</p>
+			<ul class="interests">
+				{p.interests[lang].map((i) => <li>{i}</li>)}
+			</ul>
+		</div>
+		<ul class="contact">
+			<li><span>{ui.email[lang]}</span><a href="#" class="js-mail" data-u={p.emailUser} data-d={p.emailDomain}>{p.emailUser}@…</a></li>
+			<li><span>{ui.github[lang]}</span><a href={p.github} target="_blank" rel="noopener">github.com/leisj24</a></li>
+			<li><span>{ui.blog[lang]}</span><a href={p.blog} target="_blank" rel="noopener">leisj24.github.io</a></li>
+			<li><span>{ui.cv[lang]}</span><a href={`${base}${lang}/cv/`}>{ui.cv[lang]}</a></li>
+		</ul>
+	</header>
+
+	<section id="research">
+		<SectionHeading num="01" title={ui.research[lang]} />
+		{p.research.map((item) => (
+			<ResearchCard item={item} lang={lang} labels={{ period: ui.period[lang], problem: ui.problem[lang], method: ui.method[lang], result: ui.result[lang] }} />
+		))}
+	</section>
+
+	<section id="publications">
+		<SectionHeading num="02" title={ui.publications[lang]} />
+		{p.publications.length === 0 ? (
+			<p class="empty">{p.emptyPublications[lang]}</p>
+		) : (
+			<ul class="pub-list">
+				{p.publications.map((pub) => (
+					<li>
+						<p class="pub-title">{pub.title[lang]}</p>
+						<p class="pub-meta">{pub.authors} · {pub.venue[lang]} · {pub.status}</p>
+					</li>
+				))}
+			</ul>
+		)}
+	</section>
+
+	<section id="education">
+		<SectionHeading num="03" title={ui.educationTitle[lang]} />
+		<div class="edu">
+			<div class="edu-head">
+				<h3>{p.education.school[lang]}</h3>
+				<span>{p.education.period[lang]}</span>
+			</div>
+			<p class="edu-major">{p.education.major[lang]}</p>
+			<ul class="edu-facts">
+				<li><span>{ui.gpa[lang]}</span>{p.education.gpa}</li>
+				<li><span>{ui.rank[lang]}</span>{p.education.rank[lang]}</li>
+				<li><span>{ui.courses[lang]}</span>{p.education.courses[lang]}</li>
+				<li><span>{ui.english[lang]}</span>{p.education.english[lang]}</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="honors">
+		<SectionHeading num="04" title={ui.honorsTitle[lang]} />
+		<ul class="honors">
+			{p.honors.map((h) => (
+				<li><span>{h.year}</span>{h[lang]}</li>
+			))}
+		</ul>
+	</section>
+
+	<section id="skills">
+		<SectionHeading num="05" title={ui.skillsTitle[lang]} />
+		<ul class="skills">
+			{p.skills.map((s) => (
+				<li><span>{s.category[lang]}</span>{s.items.join(' · ')}</li>
+			))}
+		</ul>
+	</section>
+
+	<footer>
+		<p>{ui.footer[lang]}</p>
+	</footer>
+</main>
+
+<style>
+	.topnav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.1rem 0;
+		border-bottom: 1px solid var(--rule);
+		margin-bottom: 3rem;
+	}
+	.brand {
+		font-family: var(--font-serif);
+		font-size: 1.05rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 1.1rem;
+		font-size: 0.86rem;
+	}
+	.nav-links a {
+		text-decoration: none;
+		color: var(--muted);
+	}
+	.nav-links a:hover {
+		color: var(--accent);
+	}
+	.hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+		gap: 3rem;
+		align-items: start;
+		margin-bottom: 3.5rem;
+	}
+	h1 {
+		margin: 0;
+		font-family: var(--font-serif);
+		font-size: clamp(2.4rem, 5vw, 3.2rem);
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.15;
+	}
+	.name-alt {
+		margin: 0.15rem 0 0.9rem;
+		color: var(--muted);
+		font-family: var(--font-serif);
+		font-size: 1.05rem;
+		letter-spacing: 0.06em;
+	}
+	.title {
+		margin: 0 0 1rem;
+		font-size: 0.98rem;
+	}
+	.bio {
+		margin: 0 0 1.1rem;
+		max-width: 38em;
+	}
+	.interests {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.interests li {
+		font-size: 0.8rem;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+		border-radius: 999px;
+		padding: 0.12rem 0.7rem;
+	}
+	.contact {
+		list-style: none;
+		margin: 0.3rem 0 0;
+		padding: 1.1rem 1.2rem;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: #fff;
+	}
+	.contact li {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: 0.6rem;
+		padding: 0.3rem 0;
+		font-size: 0.9rem;
+	}
+	.contact span {
+		color: var(--muted);
+		font-size: 0.82rem;
+	}
+	section {
+		margin-bottom: 3rem;
+	}
+	.empty {
+		color: var(--muted);
+		font-size: 0.95rem;
+	}
+	.edu-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		align-items: baseline;
+	}
+	.edu-head h3 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+	.edu-head span {
+		color: var(--muted);
+		font-size: 0.85rem;
+	}
+	.edu-major {
+		margin: 0.2rem 0 0.9rem;
+		color: var(--muted);
+		font-size: 0.95rem;
+	}
+	.edu-facts,
+	.honors,
+	.skills {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.edu-facts li,
+	.skills li {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: 0.8rem;
+		padding: 0.32rem 0;
+		font-size: 0.95rem;
+	}
+	.edu-facts span,
+	.skills span {
+		color: var(--muted);
+		font-size: 0.85rem;
+	}
+	.honors li {
+		padding: 0.32rem 0;
+		font-size: 0.95rem;
+	}
+	.honors li span {
+		color: var(--muted);
+		font-size: 0.82rem;
+		margin-right: 0.8rem;
+	}
+	footer {
+		border-top: 1px solid var(--rule);
+		padding-top: 1.4rem;
+		color: var(--muted);
+		font-size: 0.82rem;
+	}
+	@media (max-width: 720px) {
+		.topnav {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.6rem;
+			margin-bottom: 2rem;
+		}
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 1.6rem;
+			margin-bottom: 2.5rem;
+		}
+		.contact li {
+			grid-template-columns: 4.5rem 1fr;
+		}
+		.edu-facts li,
+		.skills li {
+			grid-template-columns: 4.5rem 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,108 @@
+---
+import type { Lang, Profile } from '../data/profile';
+
+interface Props {
+	item: Profile['research'][number];
+	lang: Lang;
+	labels: { period: string; problem: string; method: string; result: string };
+}
+const { item, lang, labels } = Astro.props;
+---
+<article class="research-card">
+	<div class="card-top">
+		<h3>{item.title[lang]}</h3>
+		<span class="status">{item.status[lang]}</span>
+	</div>
+	<p class="period">{labels.period}：{item.period[lang]}</p>
+	<dl>
+		<div>
+			<dt>{labels.problem}</dt>
+			<dd>{item.problem[lang]}</dd>
+		</div>
+		<div>
+			<dt>{labels.method}</dt>
+			<dd>{item.method[lang]}</dd>
+		</div>
+		<div>
+			<dt>{labels.result}</dt>
+			<dd>{item.result[lang]}</dd>
+		</div>
+	</dl>
+	<ul class="tags">
+		{item.tags.map((tag) => <li>{tag}</li>)}
+	</ul>
+</article>
+
+<style>
+	.research-card {
+		padding: 1.4rem 0 1.6rem;
+		border-bottom: 1px solid var(--rule);
+	}
+	.research-card:last-child {
+		border-bottom: 0;
+	}
+	.card-top {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	h3 {
+		margin: 0;
+		font-size: 1.15rem;
+		font-weight: 600;
+		line-height: 1.5;
+	}
+	.status {
+		flex-shrink: 0;
+		font-size: 0.75rem;
+		color: var(--accent);
+		border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		border-radius: 999px;
+		padding: 0.08rem 0.6rem;
+	}
+	.period {
+		margin: 0.35rem 0 0.9rem;
+		color: var(--muted);
+		font-size: 0.85rem;
+	}
+	dl {
+		display: grid;
+		gap: 0.55rem;
+		margin: 0 0 1rem;
+	}
+	dl > div {
+		display: grid;
+		grid-template-columns: 3.2rem 1fr;
+		gap: 0.8rem;
+	}
+	dt {
+		color: var(--muted);
+		font-size: 0.85rem;
+	}
+	dd {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.tags li {
+		font-size: 0.75rem;
+		color: var(--muted);
+		background: color-mix(in srgb, var(--rule) 45%, transparent);
+		border-radius: 999px;
+		padding: 0.1rem 0.65rem;
+	}
+	@media (max-width: 560px) {
+		dl > div {
+			grid-template-columns: 1fr;
+			gap: 0.1rem;
+		}
+	}
+</style>
