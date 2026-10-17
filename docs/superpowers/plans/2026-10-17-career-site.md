@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - `site: 'https://leisj24.github.io'`，`base: '/career'`；所有站内链接必须用 `import.meta.env.BASE_URL` 拼接，不允许裸写 `/zh/` 等绝对路径（根重定向脚本除外，见 Task 4）
-- 公开页面禁止出现手机号 `PHONE_REDACTED`；邮箱只允许拆分混淆形式（`data-u`/`data-d` + JS 拼接），不得出现明文 `mailto:`
+- 公开页面禁止出现手机号（已脱敏，见任务要求）；邮箱只允许拆分混淆形式（`data-u`/`data-d` + JS 拼接），不得出现明文 `mailto:`
 - 配色 token：纸色 `#faf9f6`、墨色 `#1f2328`、次要文字 `#5b616b`、细线 `#e5e2da`、强调色 `#0f766e`、强调色 hover `#115e59`
 - 不引入 UI 框架、不做深色模式；除语言切换/邮箱/根重定向外不写自定义 JS
 - 缩进使用 tab（与现有博客一致）；中文文案以现有简历为底稿，英文人工撰写，禁止机翻腔
@@ -1162,7 +1162,7 @@ const p = profile;
 
 Run: `npm run build && npm run preview`
 浏览器打开 `http://localhost:4321/career/zh/cv/` 与 `/career/en/cv/`
-Expected: 版式正常；页面中无手机号（`grep -r PHONE_REDACTED dist/` 无结果）；浏览器打印预览为 A4 单栏、无导航。
+Expected: 版式正常；页面中无手机号（`grep -r PHONE_REDACTED dist/` 无结果，`PHONE_REDACTED` 为脱敏占位）；浏览器打印预览为 A4 单栏、无导航。
 Run: `grep -rn "PHONE_REDACTED" dist/ || echo "no phone number"`
 Expected: `no phone number`
 
