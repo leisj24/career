@@ -144,6 +144,7 @@ export const profile = {
 		method: { zh: '方法', en: 'Method' } as L,
 		result: { zh: '结果', en: 'Result' } as L,
 		period: { zh: '时间', en: 'Period' } as L,
+		periodSep: { zh: '：', en: ': ' } as L,
 		gpa: { zh: 'GPA', en: 'GPA' } as L,
 		rank: { zh: '专业排名', en: 'Rank' } as L,
 		courses: { zh: '核心课程', en: 'Selected Courses' } as L,

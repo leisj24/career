@@ -4,7 +4,7 @@ import type { Lang, Profile } from '../data/profile';
 interface Props {
 	item: Profile['research'][number];
 	lang: Lang;
-	labels: { period: string; problem: string; method: string; result: string };
+	labels: { period: string; periodSep: string; problem: string; method: string; result: string };
 }
 const { item, lang, labels } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { item, lang, labels } = Astro.props;
 		<h3>{item.title[lang]}</h3>
 		<span class="status">{item.status[lang]}</span>
 	</div>
-	<p class="period">{labels.period}：{item.period[lang]}</p>
+	<p class="period">{labels.period}{labels.periodSep}{item.period[lang]}</p>
 	<dl>
 		<div>
 			<dt>{labels.problem}</dt>
