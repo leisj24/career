@@ -1,0 +1,75 @@
+.cv {
+	max-width: 800px;
+	padding-top: 2rem;
+}
+.cv .back {
+	font-size: 0.85rem;
+}
+.cv header {
+	border-bottom: 2px solid var(--ink);
+	padding-bottom: 1rem;
+	margin-bottom: 1.6rem;
+}
+.cv h1 {
+	margin: 0;
+	font-family: var(--font-serif);
+	font-size: 2rem;
+}
+.cv h1 span {
+	font-size: 1rem;
+	color: var(--muted);
+	font-weight: 400;
+	margin-left: 0.6rem;
+}
+.cv .meta {
+	margin: 0.4rem 0 0;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+.cv section {
+	margin-bottom: 1.4rem;
+}
+.cv h2 {
+	font-family: var(--font-serif);
+	font-size: 1.15rem;
+	border-bottom: 1px solid var(--rule);
+	padding-bottom: 0.3rem;
+}
+.cv h3 {
+	font-size: 1rem;
+	margin: 0.9rem 0 0.2rem;
+}
+.cv h3 small {
+	color: var(--muted);
+	font-weight: 400;
+	margin-left: 0.6rem;
+	font-size: 0.8rem;
+}
+.cv p {
+	margin: 0.25rem 0;
+	font-size: 0.92rem;
+}
+.cv ul {
+	margin: 0.3rem 0;
+	padding-left: 1.2rem;
+	font-size: 0.92rem;
+}
+@media print {
+	:root {
+		font-size: 12px;
+	}
+	.cv .back {
+		display: none;
+	}
+	.cv {
+		max-width: none;
+		padding: 0;
+	}
+	.cv article {
+		break-inside: avoid;
+	}
+	@page {
+		size: A4;
+		margin: 16mm;
+	}
+}

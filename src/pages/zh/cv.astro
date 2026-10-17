@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { profile } from '../../data/profile';
+import '../../styles/cv.css';
 const p = profile;
-const lang = 'zh' as const;
 ---
 <Base lang="zh" title="CV · 雷双吉" description="雷双吉的简历（中英双语主页的打印版）。" path="/cv/">
 	<main class="page cv">
@@ -37,74 +37,3 @@ const lang = 'zh' as const;
 		</section>
 	</main>
 </Base>
-
-<style is:global>
-	.cv {
-		max-width: 800px;
-		padding-top: 2rem;
-	}
-	.cv .back {
-		font-size: 0.85rem;
-	}
-	.cv header {
-		border-bottom: 2px solid var(--ink);
-		padding-bottom: 1rem;
-		margin-bottom: 1.6rem;
-	}
-	.cv h1 {
-		margin: 0;
-		font-family: var(--font-serif);
-		font-size: 2rem;
-	}
-	.cv h1 span {
-		font-size: 1rem;
-		color: var(--muted);
-		font-weight: 400;
-		margin-left: 0.6rem;
-	}
-	.cv .meta {
-		margin: 0.4rem 0 0;
-		color: var(--muted);
-		font-size: 0.9rem;
-	}
-	.cv section {
-		margin-bottom: 1.4rem;
-	}
-	.cv h2 {
-		font-family: var(--font-serif);
-		font-size: 1.15rem;
-		border-bottom: 1px solid var(--rule);
-		padding-bottom: 0.3rem;
-	}
-	.cv h3 {
-		font-size: 1rem;
-		margin: 0.9rem 0 0.2rem;
-	}
-	.cv h3 small {
-		color: var(--muted);
-		font-weight: 400;
-		margin-left: 0.6rem;
-		font-size: 0.8rem;
-	}
-	.cv p {
-		margin: 0.25rem 0;
-		font-size: 0.92rem;
-	}
-	.cv ul {
-		margin: 0.3rem 0;
-		padding-left: 1.2rem;
-		font-size: 0.92rem;
-	}
-	@media print {
-		.cv .back {
-			display: none;
-		}
-		body {
-			font-size: 12px;
-		}
-		.cv {
-			max-width: none;
-			padding: 0;
-		}
-	}
-</style>
